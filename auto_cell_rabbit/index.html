@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🐰 守护小兔子</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Pastel Playful Theme */
+      --primary: #FF6B9D;
+      --secondary: #FFC93C;
+      --accent: #6BCF7F;
+      --bg-main: #FFF5F7;
+      --bg-card: #FFFFFF;
+      --text-primary: #2D3142;
+      --text-secondary: #8B7E8F;
+      --shadow-soft: 0 8px 32px rgba(255, 107, 157, 0.15);
+      --shadow-medium: 0 12px 48px rgba(255, 107, 157, 0.25);
+      --border-radius: 24px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Fredoka', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-primary);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* 装饰性背景 */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(255, 201, 60, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(107, 207, 127, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(255, 107, 157, 0.05) 0%, transparent 50%);
+      animation: float 20s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(30px, -30px) rotate(2deg); }
+    }
+
+    /* Canvas */
+    #canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      cursor: crosshair;
+      background: white;
+    }
+
+    /* 顶部控制栏 */
+    .top-bar {
+      position: fixed;
+      top: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      background: var(--bg-card);
+      padding: 12px 24px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-soft);
+      z-index: 1000;
+      animation: slideDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    .mode-btn {
+      padding: 10px 20px;
+      border: 3px solid transparent;
+      border-radius: 999px;
+      background: var(--bg-main);
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mode-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: var(--primary);
+      transform: translate(-50%, -50%);
+      transition: width 0.5s ease, height 0.5s ease;
+      z-index: -1;
+    }
+
+    .mode-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+    }
+
+    .mode-btn.active {
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .mode-btn.active::before {
+      width: 200%;
+      height: 200%;
+    }
+
+    /* 控制面板 */
+    .control-panel {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      background: var(--bg-card);
+      padding: 16px 28px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-soft);
+      z-index: 1000;
+      animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s backwards;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    .control-btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 999px;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .control-btn.primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      box-shadow: 0 4px 16px rgba(255, 107, 157, 0.3);
+    }
+
+    .control-btn.secondary {
+      background: var(--bg-main);
+      color: var(--text-primary);
+    }
+
+    .control-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+    }
+
+    .control-btn:active {
+      transform: translateY(-1px) scale(0.98);
+    }
+
+    .control-btn.active {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* 速度滑块 */
+    .speed-control {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 16px;
+      border-left: 2px solid var(--bg-main);
+    }
+
+    .speed-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      font-family: 'DM Mono', monospace;
+    }
+
+    input[type="range"] {
+      width: 120px;
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid var(--primary);
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(255, 107, 157, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+      box-shadow: 0 4px 12px rgba(255, 107, 157, 0.5);
+    }
+
+    /* 状态卡片 */
+    .stats-card {
+      position: fixed;
+      top: 32px;
+      right: 32px;
+      background: var(--bg-card);
+      padding: 20px 28px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-soft);
+      z-index: 1000;
+      animation: slideLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s backwards;
+      min-width: 200px;
+    }
+
+    @keyframes slideLeft {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .stats-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .stats-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .stats-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .stats-value {
+      font-size: 24px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: 'DM Mono', monospace;
+      min-width: 60px;
+      text-align: right;
+    }
+
+    /* 信息提示卡 */
+    .info-card {
+      position: fixed;
+      top: 32px;
+      left: 32px;
+      background: var(--bg-card);
+      padding: 24px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-soft);
+      max-width: 320px;
+      z-index: 999;
+      animation: slideRight 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s backwards;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    @keyframes slideRight {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .info-card.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-20px);
+    }
+
+    .info-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+
+    .info-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .info-list {
+      list-style: none;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .info-list li::before {
+      content: '🐰';
+      margin-right: 8px;
+    }
+
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .top-bar, .control-panel {
+        flex-direction: column;
+        padding: 16px;
+      }
+
+      .stats-card {
+        top: auto;
+        bottom: 120px;
+        right: 16px;
+      }
+
+      .info-card {
+        display: none;
+      }
+    }
+
+    /* 设置按钮 */
+    .settings-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+      z-index: 1001;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s backwards;
+    }
+
+    .settings-btn:hover {
+      transform: rotate(90deg) scale(1.1);
+      box-shadow: var(--shadow-medium);
+    }
+
+    /* 设置面板 */
+    .settings-panel {
+      position: fixed;
+      right: 32px;
+      bottom: 100px;
+      background: var(--bg-card);
+      padding: 24px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-medium);
+      z-index: 1000;
+      min-width: 300px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .settings-panel.active {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+
+    .settings-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+
+    .settings-item {
+      margin-bottom: 16px;
+    }
+
+    .settings-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      accent-color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+  <!-- 顶部模式切换 -->
+  <div class="top-bar">
+    <button id="btn-observe-mode" class="mode-btn active">👀 观察模式</button>
+    <button id="btn-guard-mode" class="mode-btn">🛡️ 守护模式</button>
+  </div>
+
+  <!-- Canvas -->
+  <canvas id="canvas"></canvas>
+
+  <!-- 底部控制栏 -->
+  <div class="control-panel">
+    <button id="btn-start" class="control-btn primary">▶ 开始演化</button>
+    <button id="btn-pause" class="control-btn secondary">⏸ 暂停</button>
+    <button id="btn-reset-rabbit" class="control-btn secondary">🐰 重置兔子</button>
+    
+    <div class="speed-control">
+      <span class="speed-label">速度</span>
+      <input type="range" id="slider-speed" min="50" max="1000" value="200">
+      <span class="speed-label" id="speed-value">200ms</span>
+    </div>
+  </div>
+
+  <!-- 统计卡片 -->
+  <div class="stats-card">
+    <div class="stats-item">
+      <span class="stats-label">代数</span>
+      <span class="stats-value" id="generation-count">0</span>
+    </div>
+    <div class="stats-item">
+      <span class="stats-label">🐰 兔子</span>
+      <span class="stats-value" id="rabbit-count">0</span>
+    </div>
+  </div>
+
+  <!-- 信息提示卡 -->
+  <div class="info-card" id="info-observe">
+    <div class="info-title">👀 观察模式</div>
+    <p class="info-text">看看可爱的小兔子在康威规则下会变成什么样子！</p>
+    <ul class="info-list">
+      <li>点击「开始演化」观察变化</li>
+      <li>点击「重置兔子」恢复初始</li>
+    </ul>
+  </div>
+
+  <div class="info-card hidden" id="info-guard">
+    <div class="info-title">🛡️ 守护模式</div>
+    <p class="info-text">挑战：在兔子周围画细胞，尝试保护它不被破坏！</p>
+    <ul class="info-list">
+      <li>点击网格可以画/擦细胞</li>
+      <li>设计防护布局后启动演化</li>
+      <li>目标：保持30%以上存活率</li>
+    </ul>
+  </div>
+
+  <!-- 设置按钮 -->
+  <button class="settings-btn" id="settings-btn">⚙️</button>
+
+  <!-- 设置面板 -->
+  <div class="settings-panel" id="settings-panel">
+    <div class="settings-title">设置</div>
+    <div class="settings-item">
+      <label class="checkbox-label">
+        <input type="checkbox" id="enable-multi-race">
+        启用多种族模式
+      </label>
+    </div>
+  </div>
+
+  <script src="rabbit-pattern.js"></script>
+  <script src="rabbit-grid.js"></script>
+  <script src="rabbit-main.js"></script>
+</body>
+</html>

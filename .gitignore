@@ -1,0 +1,81 @@
+# ==========================================
+# macOS 系统文件
+# ==========================================
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# ==========================================
+# Windows 系统文件
+# ==========================================
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# ==========================================
+# 编辑器/IDE
+# ==========================================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# ==========================================
+# 日志和临时文件
+# ==========================================
+*.log
+*.tmp
+*.temp
+logs/
+tmp/
+temp/
+
+# ==========================================
+# 项目相关
+# ==========================================
+config.json
+
+# ==========================================
+# 项目专用
+# ==========================================
+# 自定义 git 工具数据，不进入标准 git
+.ugit/
+ugit/
+
+# CodeBuddy 工具数据
+.codebuddy/
+
+# 部署 skill 私有目录（含服务器配置）
+.codebuddy/skills/deploy_auto_cell/
+
+# 截图生成中间文件
+docs/screenshots-raw/

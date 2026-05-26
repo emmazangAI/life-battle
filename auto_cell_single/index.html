@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cellular Automaton - Single Race</title>
+  <link rel="stylesheet" href="../src/style.css">
+</head>
+<body>
+
+  <!-- 设置浮窗切换按钮 -->
+  <button id="settings-toggle" title="设置">⚙ 设置</button>
+
+  <!-- 设置浮窗面板 -->
+  <div id="settings-panel" class="collapsed">
+    <div class="panel-header">
+      <span>设置</span>
+      <button id="panel-close">✕</button>
+    </div>
+    <div class="panel-body">
+      <div class="control-row">
+        <button id="btn-start">开始</button>
+        <button id="btn-pause">暂停</button>
+        <button id="btn-reset">重置</button>
+        <button id="btn-random">随机填充</button>
+      </div>
+
+      <div class="control-row">
+        <label>
+          网格宽：<input type="number" id="input-cols" value="50" min="1" max="500">
+        </label>
+        <label>
+          网格高：<input type="number" id="input-rows" value="50" min="1" max="500">
+        </label>
+        <button id="btn-apply">应用</button>
+      </div>
+
+      <div class="control-row">
+        <label>
+          速度：<input type="range" id="slider-speed" min="50" max="1000" value="200">
+          <span id="speed-value">200ms</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="canvas"></canvas>
+
+  <script src="../src/cell.js"></script>
+  <script src="../src/main.js"></script>
+</body>
+</html>
