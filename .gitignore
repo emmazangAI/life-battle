@@ -79,3 +79,9 @@ ugit/
 
 # 截图生成中间文件
 docs/screenshots-raw/
+
+# 临时验证文件
+docs/_check_frame.png
+docs/battleoverview.gif
+docs/battleoverview.GIF
+docs/gospergungif.GIF

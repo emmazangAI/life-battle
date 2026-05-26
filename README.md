@@ -17,7 +17,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/screenshot-battle.png" alt="Life Battle screenshot" width="720">
+  <img src="docs/battle-hero.gif" alt="Life Battle — pink vs green species evolving on a grid" width="900">
 </p>
 
 ---
