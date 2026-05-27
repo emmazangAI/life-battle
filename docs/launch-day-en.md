@@ -217,3 +217,105 @@ A: Please do! Open a PR or issue with the RLE / coordinate list and I'll merge.
 周四 21:03 — 发首条作者评论
 周四 21:00-25:00 — 盯评论、回复
 ```
+
+---
+
+## 7️⃣ X 英文亲子角度版（已选定，2026-05-27 用）
+
+> **为什么单独列出**：之前的 X 英文版（在 launch-day-cn.md 第 2 项）走"硬核技术"角度；
+> 这一版走"亲子+AI 协作"角度，可作为 cross-post 第二条 / 或备选首发。
+> 关键：**263 字符**，X 免费版 280 限制内。
+
+### 主推文（已选 B 版）
+
+```
+Kid asked: "Can two kinds of cells fight?"
+
+We were watching Conway's Game of Life. He wanted war.
+
+Built it in half a day with AI:
+✦ Pink vs green armies
+✦ Cat / dog / rabbit shapes
+✦ Gosper Gun, spaceships
+
+Open-sourced, MIT.
+
+🎮 github.com/emmazangAI/life-battle
+```
+
+**附件**：`docs/battle-hero.gif`
+**Hashtags（如还有字符余量）**：`#vibecoding #aibuilder`
+
+---
+
+## 8️⃣ X 评论区回复模板
+
+### "Cool! What AI did you use?"
+> Mostly Claude (via CodeBuddy IDE), with my kid as PM 😄
+> The "specs" came from a 7-year-old saying things like
+> "can it be hexagonal" — surprisingly clear product feedback.
+
+### "Has this been done before?"
+> Multi-species Conway variants exist in academic papers,
+> but I couldn't find a clean web version anyone can just
+> play. If you know of one, please share — would love to
+> read the prior art.
+
+### "Why pink vs green specifically?"
+> Kid picked the colors. He wanted the rabbit team to be
+> pink and the turtle team to be green. I'm not arguing
+> with the PM.
+
+### "How does the rule work?"
+> Standard Conway rules + one tweak: when a new cell is born
+> from 3 neighbors, it inherits the majority team's color.
+> 1+1+1 ties → no birth (no consensus). That's it.
+
+### Quote-tweet 表扬"This is what AI coding should be"
+> Thank you 🙏 The deeper realization for me was that the
+> bottleneck isn't AI capability — it's the curiosity to
+> ask "can we make this?" My kid had that bottleneck-free.
+
+### "Can my kid play this? iPad?"
+> Just open the link on any browser, including iPad. It's
+> a single HTML file. No install, no signup. Drawing with
+> finger works on touchscreens too.
+
+### "Can I fork this?"
+> MIT, please do. Would love to see what you build.
+
+### Feature request
+> Open an issue! Genuine question, what kind of pattern do
+> you want to see fight others? I'll add the most-upvoted
+> ones next weekend.
+
+### 中国背景相关问题
+> Yes, I'm based in China. The default language is Chinese
+> because most of my friends are — but there's an EN toggle
+> in the top right. PRs welcome for other languages.
+
+### ⚠️ 不要回复的情况
+- 任何带嘲讽 / 酸 / 质疑动机的评论 → 回了让算法推给更多人看争议
+- 纯单字"cool"/"nice" → 点个赞就好，不必回复（回了反而稀释主推文流量）
+
+---
+
+## 📌 发推执行清单
+
+发推那一刻按顺序做：
+
+- [ ] 先把 GIF 拖进 X 编辑器
+- [ ] 粘贴 B 版正文
+- [ ] 检查字符数（应该 ~263，不超 280）
+- [ ] 截图字符数确认（X 偶尔会算错链接长度）
+- [ ] 发推
+- [ ] **5 分钟内**自己 quote-reply 一条 follow-up（增加曝光的小技巧）：
+      ```
+      bonus context: this all started because we couldn't
+      find a Game of Life web demo that wasn't either a
+      math paper or a 1990s applet. half a day later, here we are.
+      ```
+- [ ] 30 分钟内私信 5-10 个朋友 ask for like/RT（cold start 关键）
+- [ ] 1 小时检查互动数 + 评论
+- [ ] 准备好上面的回复模板，看到对应问题立刻 paste
+
