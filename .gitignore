@@ -98,3 +98,8 @@ auto_cell_rabbit/
 auto_cell_single/
 auto_cell_tri/
 src/
+
+# Hero GIF 候选/对比文件（仅本地用）
+docs/hero-*.gif
+docs/_compare-heroes.html
+docs/autobattle.mp4
