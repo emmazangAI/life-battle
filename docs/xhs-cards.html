@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Life Battle 小红书图文卡片</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Special+Elite&family=Noto+Serif+SC:wght@400;700;900&family=Kalam:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-100-M/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@3.3.0/dist/dom-to-image-more.min.js"></script>
+<style>
+:root {
+  --paper: #F8F0E3;
+  --paper-2: #FFFACD;
+  --ink: #36454F;
+  --ink-2: #5C4033;
+  --accent-orange: #FFA07A;
+  --accent-mustard: #FFDB58;
+  --accent-olive: #BDB76B;
+  --accent-pink: #D8BFD8;
+  --accent-blue: #A0C4FF;
+  --line: rgba(92, 64, 51, 0.35);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #efe8d8;
+  padding: 40px 20px;
+  font-family: 'Noto Serif SC', serif;
+  color: var(--ink);
+}
+.page-title {
+  text-align: center;
+  font-family: 'Caveat', cursive;
+  font-size: 36px;
+  color: var(--ink-2);
+  margin-bottom: 24px;
+}
+.page-hint {
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 32px;
+}
+.cards-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+}
+.card-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.card {
+  width: 450px;
+  height: 600px;
+  background-color: var(--paper);
+  background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+  border: 1px solid rgba(92,64,51,0.15);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  position: relative;
+  overflow: hidden;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 12px; left: 12px; right: 12px; bottom: 12px;
+  border: 1px dashed rgba(92,64,51,0.18);
+  pointer-events: none;
+}
+.tag {
+  display: inline-block;
+  font-family: 'Special Elite', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--ink-2);
+  border: 1px solid var(--line);
+  padding: 3px 10px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.4);
+}
+.divider {
+  height: 1px;
+  background: var(--line);
+  margin: 14px 0;
+  position: relative;
+}
+.divider::after {
+  content: '✦';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  background: var(--paper);
+  padding: 0 8px;
+  color: var(--ink-2);
+  font-size: 12px;
+}
+.card-num {
+  position: absolute;
+  bottom: 18px;
+  right: 24px;
+  font-family: 'Caveat', cursive;
+  color: var(--ink-2);
+  font-size: 16px;
+  opacity: 0.55;
+}
+.brand {
+  position: absolute;
+  bottom: 18px;
+  left: 24px;
+  font-family: 'Special Elite', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--ink-2);
+  opacity: 0.55;
+}
+.hl {
+  position: relative;
+  display: inline;
+  z-index: 1;
+}
+.hl::after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  bottom: 1px;
+  height: 9px;
+  background: var(--accent-mustard);
+  opacity: 0.55;
+  z-index: -1;
+}
+.hl-pink::after { background: var(--accent-pink); opacity: 0.7; }
+.hl-blue::after { background: var(--accent-blue); opacity: 0.55; }
+.hl-orange::after { background: var(--accent-orange); opacity: 0.45; }
+
+.dl-btn {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  background: var(--ink-2);
+  color: var(--paper);
+  border: none;
+  padding: 8px 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+.dl-btn:hover { background: var(--accent-orange); color: var(--ink); }
+.dl-all {
+  display: block;
+  margin: 40px auto 20px;
+  font-size: 16px;
+  padding: 14px 40px;
+  background: var(--accent-orange);
+  color: var(--ink-2);
+  font-weight: bold;
+}
+
+/* ===== 卡片 1：开篇 ===== */
+.card-1 .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.card-1 .date {
+  font-family: 'Special Elite', monospace;
+  font-size: 11px;
+  color: var(--ink-2);
+  opacity: 0.7;
+}
+.card-1 .hero-title {
+  margin-top: 38px;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 900;
+  font-size: 38px;
+  color: var(--ink);
+  line-height: 1.35;
+  letter-spacing: 1px;
+}
+.card-1 .hero-emoji {
+  font-size: 52px;
+  margin-top: 16px;
+  letter-spacing: 8px;
+}
+.card-1 .sub {
+  margin-top: auto;
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  color: var(--ink-2);
+  line-height: 1.4;
+  margin-bottom: 30px;
+}
+.card-1 .sub::before {
+  content: '" ';
+  color: var(--accent-orange);
+  font-weight: bold;
+}
+.card-1 .sub::after {
+  content: ' "';
+  color: var(--accent-orange);
+  font-weight: bold;
+}
+
+/* ===== 卡片 2：起因 ===== */
+.card .small-title {
+  font-family: 'Caveat', cursive;
+  font-size: 28px;
+  color: var(--ink-2);
+  margin-bottom: 4px;
+}
+.card .h2 {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 900;
+  font-size: 24px;
+  color: var(--ink);
+  line-height: 1.4;
+  margin-bottom: 18px;
+}
+.card .body {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--ink);
+  letter-spacing: 0.3px;
+}
+.card .body p { margin-bottom: 12px; }
+.quote-box {
+  border-left: 3px solid var(--accent-orange);
+  background: rgba(255,250,205,0.5);
+  padding: 12px 14px;
+  margin: 14px 0;
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+
+/* ===== 卡片 3：需求列表 ===== */
+.req-list { list-style: none; margin-top: 8px; }
+.req-list li {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 15px;
+  color: var(--ink);
+  padding: 10px 0 10px 28px;
+  position: relative;
+  border-bottom: 1px dashed var(--line);
+  line-height: 1.5;
+}
+.req-list li:last-child { border-bottom: none; }
+.req-list li::before {
+  content: '✦';
+  position: absolute;
+  left: 4px;
+  top: 10px;
+  color: var(--accent-orange);
+  font-size: 14px;
+}
+.req-list .ans {
+  display: block;
+  font-family: 'Caveat', cursive;
+  color: var(--ink-2);
+  font-size: 16px;
+  margin-top: 4px;
+  padding-left: 14px;
+  opacity: 0.85;
+}
+.req-list .ans::before {
+  content: '→ ';
+  color: var(--accent-orange);
+}
+
+/* ===== 卡片 4：开源 ===== */
+.card-4 .body { font-size: 14.5px; }
+.url-block {
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.55);
+  border: 1px dashed var(--line);
+  border-radius: 4px;
+  font-family: 'Special Elite', monospace;
+  font-size: 12px;
+  color: var(--ink-2);
+  line-height: 2;
+}
+.url-block .label {
+  display: inline-block;
+  width: 70px;
+  color: var(--accent-orange);
+  font-weight: bold;
+}
+
+/* ===== 卡片 5：感悟金句 ===== */
+.card-5 {
+  background-color: var(--paper-2);
+}
+.card-5 .quote-mark {
+  font-family: 'Caveat', cursive;
+  font-size: 120px;
+  color: var(--accent-orange);
+  line-height: 0.6;
+  opacity: 0.7;
+  margin-top: 24px;
+}
+.card-5 .big-quote {
+  margin-top: 24px;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1.65;
+  color: var(--ink);
+  letter-spacing: 0.5px;
+}
+.card-5 .by {
+  margin-top: auto;
+  margin-bottom: 24px;
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  color: var(--ink-2);
+  text-align: right;
+}
+
+/* ===== 卡片 6：尾页 ===== */
+.card-6 .arrow {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  color: var(--accent-orange);
+}
+.card-6 .h2 { margin-bottom: 24px; }
+.card-6 .next-list {
+  list-style: none;
+  margin: 16px 0;
+}
+.card-6 .next-list li {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 14.5px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  position: relative;
+  padding-left: 22px;
+}
+.card-6 .next-list li::before {
+  content: '□';
+  position: absolute;
+  left: 0;
+  color: var(--accent-olive);
+  font-size: 14px;
+}
+.card-6 .cta {
+  margin-top: 20px;
+  padding: 16px;
+  background: var(--ink-2);
+  color: var(--paper);
+  text-align: center;
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  letter-spacing: 1px;
+  border-radius: 3px;
+}
+.card-6 .cta i { color: var(--accent-mustard); margin: 0 4px; }
+
+</style>
+</head>
+<body>
+
+<div class="page-title">Life Battle · 小红书图文卡片</div>
+<div class="page-hint">点击卡片下方按钮单张下载，或点击页面底部「一键下载全部」 · 推荐 6 张轮播</div>
+
+<div class="cards-row">
+
+  <!-- 卡片 1：开篇 -->
+  <div class="card-wrap">
+    <div class="card card-1" id="card-1">
+      <div class="top">
+        <span class="tag">VIBE CODING · 周末项目</span>
+        <span class="date">2026.05<br>NOTE 01</span>
+      </div>
+      <div class="hero-title">和娃半天<br>做了个游戏<br>开源了。</div>
+      <div class="hero-emoji">🐰 vs 🐢</div>
+      <div class="sub">妈妈用 AI<br>把康威生命游戏<br>变成了战场</div>
+      <div class="brand">EMMA · NOTES</div>
+      <div class="card-num">01 / 06</div>
+    </div>
+    <button class="dl-btn" data-target="card-1">下载第 1 张</button>
+  </div>
+
+  <!-- 卡片 2：起因 -->
+  <div class="card-wrap">
+    <div class="card" id="card-2">
+      <span class="tag">起因</span>
+      <div class="small-title" style="margin-top:14px;">how it started</div>
+      <div class="h2">一个想看<br>"细胞打架"的娃</div>
+      <div class="divider"></div>
+      <div class="body">
+        <p>周末和娃看纪录片，他被里面的<span class="hl">「康威生命游戏」</span>迷住了——就是那种小方块自己演化、滑翔机一直发射子弹的玩具。</p>
+        <p>他问我：</p>
+      </div>
+      <div class="quote-box">
+        "妈妈，能不能两种细胞打架？"
+      </div>
+      <div class="body">
+        <p>我搜了一圈现成版本，<span class="hl hl-orange">要么太硬核（程序员才看懂），要么没意思</span>。</p>
+        <p style="font-family:'Caveat',cursive;font-size:22px;color:var(--ink-2);margin-top:8px;">行吧，自己做。</p>
+      </div>
+      <div class="brand">EMMA · NOTES</div>
+      <div class="card-num">02 / 06</div>
+    </div>
+    <button class="dl-btn" data-target="card-2">下载第 2 张</button>
+  </div>
+
+  <!-- 卡片 3：需求清单 -->
+  <div class="card-wrap">
+    <div class="card" id="card-3">
+      <span class="tag">需求迭代</span>
+      <div class="small-title" style="margin-top:14px;">kid-driven product</div>
+      <div class="h2">娃边玩边加需求<br>我一边和 AI 写代码</div>
+      <div class="divider"></div>
+      <ul class="req-list">
+        <li>能不能两种细胞打架？
+          <span class="ans">加了多种族对战</span>
+        </li>
+        <li>哪些图案不会死？
+          <span class="ans">稳定图案可以起名字</span>
+        </li>
+        <li>想要猫狗兔子！
+          <span class="ans">动物图案安排上</span>
+        </li>
+        <li>网格能不能是六边形？
+          <span class="ans">规则重新推一遍</span>
+        </li>
+        <li style="border-bottom:none;">能不能在正方体里？
+          <span class="ans">行，下周末搞 3D 版</span>
+        </li>
+      </ul>
+      <div style="margin-top:auto;font-family:'Caveat',cursive;font-size:18px;color:var(--ink-2);text-align:right;">半天搞完。娃玩疯了。</div>
+      <div class="brand">EMMA · NOTES</div>
+      <div class="card-num">03 / 06</div>
+    </div>
+    <button class="dl-btn" data-target="card-3">下载第 3 张</button>
+  </div>
+
+  <!-- 卡片 4：开源 -->
+  <div class="card-wrap">
+    <div class="card card-4" id="card-4">
+      <span class="tag">OPEN SOURCE</span>
+      <div class="small-title" style="margin-top:14px;">open it up</div>
+      <div class="h2">想想反正自己<br>也写不出更多<br>干脆开源了</div>
+      <div class="divider"></div>
+      <div class="body">
+        <p><span class="hl hl-blue">MIT 协议自由使用</span>，有娃想玩这个的妈妈姐妹们，可以直接体验。</p>
+        <p>纯 HTML + Canvas + 原生 JS，<span class="hl">无需安装、无任何依赖</span>，移动端也能玩。</p>
+      </div>
+      <div class="url-block">
+        <div><span class="label">▶ 玩</span>static.feishare.net /<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;auto_cell_battle/</div>
+        <div style="margin-top:10px;"><span class="label">⭐ 开源</span>github.com /<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emmazangAI / life-battle</div>
+      </div>
+      <div style="margin-top:18px;font-family:'Caveat',cursive;font-size:17px;color:var(--ink-2);text-align:center;">⭐ 喜欢的话点个 star</div>
+      <div class="brand">EMMA · NOTES</div>
+      <div class="card-num">04 / 06</div>
+    </div>
+    <button class="dl-btn" data-target="card-4">下载第 4 张</button>
+  </div>
+
+  <!-- 卡片 5：金句 -->
+  <div class="card-wrap">
+    <div class="card card-5" id="card-5">
+      <span class="tag">真正的感受</span>
+      <div class="quote-mark">"</div>
+      <div class="big-quote">
+        Agent 时代<br>
+        最稀缺的<br>
+        不是<span class="hl hl-pink">技术能力</span><br>
+        是<span class="hl hl-orange">念头本身</span>。
+      </div>
+      <div style="margin-top:24px;font-family:'Noto Serif SC',serif;font-size:14px;line-height:1.8;color:var(--ink);">
+        以前一个「我想试试」可能因为麻烦就忘了，<br>
+        现在常常立刻就有回应。
+      </div>
+      <div class="by">— Emma · 2026 春</div>
+      <div class="brand">EMMA · NOTES</div>
+      <div class="card-num">05 / 06</div>
+    </div>
+    <button class="dl-btn" data-target="card-5">下载第 5 张</button>
+  </div>
+
+  <!-- 卡片 6：尾页 / CTA -->
+  <div class="card-wrap">
+    <div class="card card-6" id="card-6">
+      <span class="tag">下一步</span>
+      <div class="small-title" style="margin-top:14px;">what's next</div>
+      <div class="h2">睡前他又问：<br>"能不能在<br>正方体里？"</div>
+      <div class="divider"></div>
+      <div class="body" style="margin-bottom:8px;">
+        <span class="arrow">→</span> <span class="hl">行，下个周末搞 3D 版。</span>
+      </div>
+      <ul class="next-list">
+        <li>下周加 3D 立方体形态</li>
+        <li>加更多图案（看 issue 投票）</li>
+        <li>想做一个"对战锦标赛"模式</li>
+      </ul>
+      <div class="cta">
+        <i class="fa-solid fa-star"></i>
+        github.com/emmazangAI/life-battle
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <div style="margin-top:14px;font-family:'Caveat',cursive;font-size:16px;color:var(--ink-2);text-align:center;line-height:1.5;">
+        欢迎 PR / Issue<br>
+        看到都会回 ✦
+      </div>
+      <div class="brand">EMMA · NOTES</div>
+      <div class="card-num">06 / 06</div>
+    </div>
+    <button class="dl-btn" data-target="card-6">下载第 6 张</button>
+  </div>
+
+</div>
+
+<button class="dl-btn dl-all" id="dl-all">⬇ 一键下载全部 6 张</button>
+
+<script>
+const SCALE = 3; // 高清 3x
+
+async function downloadCard(id) {
+  const node = document.getElementById(id);
+  const dataUrl = await domtoimage.toPng(node, {
+    quality: 1.0,
+    bgcolor: '#F8F0E3',
+    width: node.offsetWidth * SCALE,
+    height: node.offsetHeight * SCALE,
+    style: {
+      transform: 'scale(' + SCALE + ')',
+      transformOrigin: 'top left',
+      width: node.offsetWidth + 'px',
+      height: node.offsetHeight + 'px'
+    }
+  });
+  const link = document.createElement('a');
+  link.download = 'life-battle-xhs-' + id + '.png';
+  link.href = dataUrl;
+  link.click();
+}
+
+document.querySelectorAll('.dl-btn[data-target]').forEach(btn => {
+  btn.addEventListener('click', () => downloadCard(btn.dataset.target));
+});
+
+document.getElementById('dl-all').addEventListener('click', async () => {
+  const ids = ['card-1','card-2','card-3','card-4','card-5','card-6'];
+  for (const id of ids) {
+    await downloadCard(id);
+    await new Promise(r => setTimeout(r, 1000)); // 等 1 秒避免浏览器拦截
+  }
+});
+</script>
+</body>
+</html>

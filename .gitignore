@@ -85,3 +85,16 @@ docs/_check_frame.png
 docs/battleoverview.gif
 docs/battleoverview.GIF
 docs/gospergungif.GIF
+
+# ==========================================
+# 早期迭代版本 — 仅本地保留，不开源到 GitHub
+# 这些是 auto_cell_battle 的演化前身，本地完整保留以备查阅
+# 服务器 static.feishare.net 上仍可访问对应子路径
+# ==========================================
+auto_cell_3d/
+auto_cell_hex/
+auto_cell_multi/
+auto_cell_rabbit/
+auto_cell_single/
+auto_cell_tri/
+src/

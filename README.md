@@ -12,8 +12,6 @@
   <a href="#game-rules">Rules</a>
   &nbsp;·&nbsp;
   <a href="#pattern-library">Patterns</a>
-  &nbsp;·&nbsp;
-  <a href="#other-modes">Other modes</a>
 </p>
 
 <p align="center">
@@ -95,32 +93,22 @@ Click the pattern button to spawn famous Life patterns as either team's color:
 ## Project layout
 
 ```
-auto-cell/
-├── auto_cell_battle/      ← Multi-species battle mode (the main attraction)
-├── auto_cell_single/      ← Classic single-species Life (vanilla)
-├── auto_cell_multi/       ← Multi-species without the battle UI
-├── auto_cell_hex/         ← Hexagonal grid variant (experimental)
-├── auto_cell_tri/         ← Triangular grid variant (experimental)
-├── auto_cell_3d/          ← 3D grid (experimental)
-├── auto_cell_rabbit/      ← Standalone "rabbit" pattern explorer
-└── docs/
+life-battle/
+├── auto_cell_battle/      ← The game (4 files, ~1700 lines)
+│   ├── index.html
+│   ├── main.js
+│   ├── cell-multi.js
+│   └── patterns.js
+├── docs/                  ← Screenshots, GIF, design notes
+├── LICENSE
+└── README.md
 ```
 
-## Other modes
+## Live demo
 
-These are alternative grid topologies I've been experimenting with. The Life
-rules are not strictly portable — neighborhood definitions and birth/survive
-thresholds need re-tuning per topology. Treat them as visual experiments
-rather than canonical Life.
+**▶ https://static.feishare.net/auto_cell_battle/** — hosted version, instantly playable
 
-| Mode | Demo |
-|---|---|
-| Battle (recommended) | https://static.feishare.net/auto_cell_battle/ |
-| Single species | https://static.feishare.net/auto_cell_single/ |
-| Multi species | https://static.feishare.net/auto_cell_multi/ |
-| Hex grid | https://static.feishare.net/auto_cell_hex/ |
-| Triangle grid | https://static.feishare.net/auto_cell_tri/ |
-| 3D grid | https://static.feishare.net/auto_cell_3d/ |
+Or just clone the repo and open `auto_cell_battle/index.html` in any browser.
 
 ## Tech notes
 

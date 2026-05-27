@@ -13,17 +13,6 @@
 - 🌐 Bilingual UI (中文 / English)
 - 🪶 **Zero dependencies** — plain HTML + Canvas 2D + vanilla JS, ~1700 lines total
 
-## Bonus modes
-
-This repo also ships 6 experimental variants of the Game of Life:
-
-- `auto_cell_single` — classic vanilla single-species Life
-- `auto_cell_multi` — multi-species without battle UI
-- `auto_cell_hex` — hexagonal grid
-- `auto_cell_tri` — triangular grid
-- `auto_cell_3d` — 3D grid
-- `auto_cell_rabbit` — standalone pattern explorer
-
 ## Try it
 
 ```bash

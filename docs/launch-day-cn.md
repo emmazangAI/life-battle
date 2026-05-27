@@ -141,7 +141,7 @@ static.feishare.net/auto_cell_battle/
 | 1 | 粉绿对战画面（最抓眼球，封面） | 从 `docs/battle-hero.gif` 截一帧 |
 | 2 | 娃玩游戏的现场照（强烈推荐有） | 自拍 |
 | 3 | 游戏开始页"兔子 vs 乌龟"截图 | 打开 demo 截图 |
-| 4 | 六边形版本截图 | 打开 hex demo 截图 |
+| 4 | 演化中的某一帧（粉绿混战） | 从 GIF 截另一帧 |
 | 5 | GitHub README 截图（露出 star 数） | 浏览器截图 |
 | 6 | 金句卡片"Agent 时代最稀缺的不是能力，是念头本身" | Canva / 即时设计 做白底卡片 |
 
@@ -172,8 +172,6 @@ MIT 协议，欢迎 PR。
 
 体验：https://static.feishare.net/auto_cell_battle/
 源码：https://github.com/emmazangAI/life-battle
-
-仓库里还有六边形版（auto_cell_hex）、三角形版（auto_cell_tri）、3D 版可以玩。
 ```
 
 **注意**：V2EX 用户最反感营销腔，去掉所有 emoji，去掉"周末"等暗示业余的词（不要让人觉得是民科）。强调技术细节"~1700 行 / 纯原生 / MIT"。

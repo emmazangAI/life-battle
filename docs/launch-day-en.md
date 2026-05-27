@@ -53,8 +53,6 @@ Would love feedback — especially:
 - Pattern suggestions for guns/reflectors I should add
 - Whether the majority-rule feels right or if there's a more elegant variant
 - Any references to prior art (couldn't find a clean multi-species Life impl when searching)
-
-Bonus modes in the same repo: hexagonal grid, triangular grid, 3D grid (all experimental).
 ```
 
 ---
@@ -127,7 +125,7 @@ When a new cell is born from 3 neighbors, it inherits the majority team's color.
 
 That single change turns the simulation into a battlefield. A Gosper Glider Gun pointing at an enemy spaceship factory. Three penguins squaring off against a puffer train. None of these "should" happen in the original Life — but here they do, and the outcomes are surprisingly hard to predict.
 
-Plain HTML + Canvas + vanilla JS, no dependencies, ~1700 lines. The repo also includes experimental hex/triangular/3D grid variants.
+Plain HTML + Canvas + vanilla JS, no dependencies, ~1700 lines.
 
 Live demo (no install): https://static.feishare.net/auto_cell_battle/
 
