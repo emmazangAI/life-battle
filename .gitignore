@@ -107,3 +107,5 @@ docs/autobattle.mp4
 # 临时验证帧（ffmpeg 中间产物）
 docs/_*.png
 docs/_*.html
+
+docs/zh-x-cover.jpg
